@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Editable Task Table</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function App() {
+        const [inputValue, setInputValue] = React.useState([
+          { task: "Onboarding Call", value: ["", "", ""] },
+          { task: "Google Search Console Access", value: ["", "", ""] },
+          { task: "Google Analytics Access", value: ["", "", ""] },
+          { task: "Website Access", value: ["", "", ""] },
+          { task: "Technical Audit", value: ["", "", ""] },
+          { task: "Anchor Text and Semantic Analysis", value: ["", "", ""] },
+          { task: "Competitor Analysis", value: ["", "", ""] },
+          { task: "Anchor Text / URL Mapping", value: ["", "", ""] },
+          {
+            task: "Google Data Studio Report + Local Reporting Suite",
+            value: ["", "", ""],
+          },
+          { task: "Site Level Optimization", value: ["", "", ""] },
+          { task: "On Page Optimization", value: ["", "", ""] },
+          { task: "Content Creation", value: ["", "", ""] },
+          { task: "Content Publishing", value: ["", "", ""] },
+          { task: "Premium Press Release", value: ["", "", ""] },
+          { task: "Authority Niche Placements", value: ["", "", ""] },
+          { task: "Review Management", value: ["", "", ""] },
+          { task: "Index Links", value: ["", "", ""] },
+          { task: "Video Recap", value: ["", "", ""] },
+        ]);
+        const handleChange = (newVal, rowIndex, colIndex) => {
+          const updated = [...inputValue];
+          updated[rowIndex].value[colIndex] = newVal;
+          setInputValue(updated);
+        };
+        const handleSave = () => {
+          console.log("📤 Data Ready to Post:", inputValue);
+          alert("Data logged in console!");
+        };
+        console.log("DataValue", inputValue);
+
+        return (
+          <div>
+            <h2 style={{ textAlign: "center" }}>Task Table (Editable)</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>MONTH 1</th>
+                  <th
+                    colSpan={3}
+                    style={{ textAlign: "center", backgroundColor: "#f0f0f0" }}
+                  >
+                    All fields are editable. Click on save below to prepare data for API
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {inputValue.map((row, rowIndex) => (
+                  <tr key={rowIndex}>
+                    <td className="task-name">{row.task}</td>
+                    {row.value.map((val, colIndex) => (
+                      <td key={colIndex}>
+                        <input
+                          type="text"
+                          value={val}
+                          onChange={(e) =>
+                            handleChange(e.target.value, rowIndex, colIndex)
+                          }
+                        />
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <button className="save-button" onClick={handleSave}>
+              Save
+            </button>
+          </div>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
