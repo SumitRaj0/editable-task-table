@@ -37,7 +37,7 @@ The idea was to display a table where each row represents a task, and the cells 
 ## 📁 Files
 
 - `index.html` → main project file with all code
-- `index.css` → optional if you’re using external styles
+- `index.css` →  external styles sheet
 - `README.md` → you're reading it 🙂
 
 ---
